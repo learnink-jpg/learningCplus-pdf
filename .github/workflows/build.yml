@@ -1,0 +1,33 @@
+name: Build EXE
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyinstaller
+          if exist requirements.txt pip install -r requirements.txt
+
+      - name: Build EXE
+        run: |
+          pyinstaller --onefile test.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: exe-build
+          path: dist/*
