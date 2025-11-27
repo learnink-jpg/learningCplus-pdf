@@ -18,9 +18,11 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
+        shell: powershell
         run: |
+          pip install --upgrade pip
           pip install pyinstaller
-          if exist requirements.txt pip install -r requirements.txt
+          if (Test-Path requirements.txt) { pip install -r requirements.txt }
 
       - name: Build EXE
         run: |
